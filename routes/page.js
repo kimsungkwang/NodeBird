@@ -14,8 +14,8 @@ router.get("/proflie", (req, res) => {
   res.render("profile", { title: "내 정보 - NodeBird" });
 });
 
-router.get("/login", (req, res) => {
-  res.render("login", { title: "로그인 - NodeBird" });
+router.get("/join", (req, res) => {
+  res.render("join", { title: "회원 가입 - NodeBird" });
 });
 
 router.get("/", (req, res, next) => {
@@ -23,5 +23,7 @@ router.get("/", (req, res, next) => {
     res.render('main', {
         title: 'NodeBird',
         twist,
-    })
-})
+    });
+});
+
+module.exports = router;
