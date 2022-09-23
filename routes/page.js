@@ -1,6 +1,6 @@
 const express = require("express");
 
-const router = express.Router;
+const router = express.Router();
 
 router.use((req, res, next) => {
   res.locals.user = null;
@@ -19,11 +19,11 @@ router.get("/join", (req, res) => {
 });
 
 router.get("/", (req, res, next) => {
-    const twist = [];
-    res.render('main', {
-        title: 'NodeBird',
-        twist,
-    });
+  const twist = [];
+  res.render("main", {
+    title: "NodeBird",
+    twist,
+  });
 });
 
 module.exports = router;

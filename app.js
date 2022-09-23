@@ -12,7 +12,6 @@ const pageRouter = require("./routes/page");
 
 const app = express();
 app.set("port", process.env.PORT || 8001);
-
 // 넌적스 설정
 app.set("view engine", "html");
 nunjucks.configure("views", {
@@ -40,7 +39,7 @@ app.use(
 
 app.use("/", pageRouter);
 
-// 404 처리 
+// 404 처리 미들웨어
 app.use((req, res, next) => {
   const error = new Error(`${req.method} ${req.url} 라우터가 없습니다.`);
   error.status = 404;
