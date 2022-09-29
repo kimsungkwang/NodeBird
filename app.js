@@ -9,6 +9,7 @@ const dotenv = require("dotenv");
 
 dotenv.config();
 const pageRouter = require("./routes/page");
+const authRouter = require('./routes/auth')
 const { sequelize } = require("./models");
 
 const app = express();
