@@ -1,6 +1,7 @@
 const express = require("express");
 const bcrypt = require("bcrypt");
 const User = require("../models/user");
+const { isLoggedIn, isNotLoggedIn } = require('./middlewares');
 
 const router = express.Router();
 
@@ -26,7 +27,7 @@ router.post("/join", isNotLoggedIn, async (req, res, next) => {
   }
 });
 
-router.post("/logout", isNotLoggedIn, async (req, res, next) => {
+router.post("/logout", isLoggedIn, async (req, res, next) => {
   req.logout();
   req.session.destroy();
   res.redirect("/");
