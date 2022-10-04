@@ -5,6 +5,7 @@ const fs = require("fs");
 
 const { Post, Hashtag } = require("../models");
 const { isLoggedIn } = require("./middlewares");
+const { nextTick } = require("process");
 
 const router = express.Router();
 
@@ -33,8 +34,18 @@ router.post("/img", isLoggedIn, upload.single("img"), (req, res) => {
   res.json({ url: `/img/${req.file.filename}` });
 });
 
-router.post("/", isLoggedIn, () => {
-    
-})
+router.post("/", isLoggedIn, upload.none(), async (req, res, next) => {
+  try {
+    const post = await Post.create({
+      content: req.body.content,
+      img: req.body.url,
+      UserID: req.body.id,
+    });
+    res.redirect("/");
+  } catch (error) {
+    console.error(error);
+    next(error);
+  }
+});
 
 module.exports = router;
